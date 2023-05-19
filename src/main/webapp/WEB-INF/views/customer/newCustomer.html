@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>New Customer</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/customers/save}" th:object="${newCustomer}">
+
+    <div>
+        <label for="customerName">Customer Name</label>
+        <input type="text" th:field="*{name}" id="customerName">
+    </div>
+
+
+    <div>
+        <label for="customerSurname">Customer Surname</label>
+        <input type="text" th:field="*{surname}" id="customerSurname">
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email">
+    </div>
+
+
+
+    <div>
+        <label for="age">Age</label>
+        <input type="text" th:field="*{age}" id="age">
+    </div>
+
+
+    <div>
+        <label for="image">Image </label>
+        <input type="text" th:field="*{image}" id="image">
+    </div>
+
+    <div>
+        <label for="gender">Gender </label>
+        <input type="text" th:field="*{gender}" id="gender">
+    </div>
+
+  <!--  <div>
+    <label for="gender">FEMALE</label>
+    <input type="radio" th:field="*{gender}"  id="gender" name="one"/>
+
+    <label for="male">Man</label>
+    <input type="radio" th:field="*{gender}"  id="male" name="one1"/>
+    </div>-->
+
+    <div>
+        <label for="dateOfBirth">DateOfBirth </label>
+        <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth">
+    </div>
+
+    <div>
+        <label for="phoneNumber">PhoneNumber </label>
+        <input type="number" th:field="*{phoneNumber}" id="phoneNumber">
+    </div>
+
+<!--    <button type="submit">Save Customer</button>-->
+
+    <div>
+        <button type="submit">Save Customer</button>
+    </div>
+
+
+</form>
+<br>
+<p style="text-align: center">
+    <a class="btn btn-outline-primary" role="button" href="/customers/save">Add new Customers</a></p>
+
+</body>
+</html>

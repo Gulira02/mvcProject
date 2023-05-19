@@ -1,0 +1,38 @@
+package peaksoft.repository.impl;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+import peaksoft.model.Booking;
+import peaksoft.model.Customer;
+import peaksoft.model.House;
+import peaksoft.repository.BookingRepository;
+@RequiredArgsConstructor
+@Repository
+@Transactional
+public class BookingRepositoryImpl implements BookingRepository {
+
+
+    @PersistenceContext
+    private final EntityManager entityManager;
+    @Override
+    public Booking getBookingById(Long bookingId) {
+        return entityManager.find(Booking.class,bookingId) ;
+    }
+
+    @Override
+    public Customer getCustomerByBookingId(Long bookingId) {
+        return entityManager.createQuery("select c from Customer c join c.bookings b where b.id=:bookingId", Customer.class)
+                .setParameter("bookingId",bookingId)
+                .getSingleResult();
+    }
+
+    @Override
+    public House getHouseByBookingId(Long bookingId) {
+        return entityManager.createQuery("select h from House h join h.booking b where b.id=: bookinId", House.class)
+                .setParameter("bookingId",bookingId)
+                .getSingleResult();
+    }
+}
